@@ -15,15 +15,15 @@ var (
 	charset     string
 	generateCmd = &cobra.Command{
 		Use:   "generate",
-		Short: "Genera una contraseña segura",
-		Long:  "Genera una contraseña aleatoria usando los caracteres especificados.",
+		Short: "Generate a random password",
+		Long:  "Generate a secure random password with specified length and character set",
 		RunE:  runGenerate,
 	}
 )
 
 func init() {
-	generateCmd.Flags().IntVarP(&length, "length", "n", 16, "Longitud de la contraseña")
-	generateCmd.Flags().StringVarP(&charset, "charset", "c", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()", "Caracteres a usar")
+	generateCmd.Flags().IntVarP(&length, "length", "n", 16, "Length of the password to generate")
+	generateCmd.Flags().StringVarP(&charset, "charset", "c", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()", "Character set to use for password generation")
 	rootCmd.AddCommand(generateCmd)
 }
 

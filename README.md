@@ -52,13 +52,17 @@ sudo mv mpass /usr/local/bin/
 
 ### Available commands
 
-| Command | Description |
-|---------|-------------|
-| `add` | Add a new password |
-| `get -u <username>` | Search by username |
-| `get -l <url>` | Search by URL |
-| `get -u <username> -l <url>` | Search by username AND URL |
-| `list` | List all entries (without showing passwords) |
+| Command                                | Description                                               |
+|----------------------------------------|-----------------------------------------------------------|
+| `add`                                  | Add a new password                                        |
+| `get -u <username>`                    | Search by username                                        |
+| `get -l <url>`                         | Search by URL                                             |
+| `get -u <username> -l <url>`           | Search by username AND URL                                |
+| `list`                                 | List all entries (without showing passwords)              |
+| `generate`                             | Generate a new password                                   |
+| `generate -n <length>`                 | Generate a new password with N characters                 |
+| `generate -c <characters>`             | Generate a new password with custom characters            |
+| `generate -n <length> -c <characters>` | Generate a new password with length and custom characters |
 
 ### Usage examples
 
@@ -124,6 +128,7 @@ mpass/
 │   ├── root.go            # Root command
 │   ├── add.go             # Add command
 │   ├── get.go             # Get command
+│   ├── generate.go        # Generate password command
 │   └── list.go            # List command
 ├── internal/              # Internal code
 │   ├── crypto/            # Encryption functions
@@ -249,7 +254,7 @@ chmod 600 ~/.mpass/vault.enc
 
 ## 📝 Roadmap
 
-- [ ] Integrated password generator
+- [x] Integrated password generator
 - [ ] Export/import backup
 - [ ] Categories and tags
 - [ ] Cloud synchronization (encrypted)
