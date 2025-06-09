@@ -129,6 +129,19 @@ func (v *VaultManager) AddEntry(entry models.PasswordEntry, masterPassword strin
 	return v.saveVault(vault, masterPassword)
 }
 
+// UpdateEntries updates an existing password entry in the vault, preserving the creation timestamp
+// and updating the modification timestamp. It saves the updated vault encrypted with the provided master password.
+func (v *VaultManager) UpdateEntries(entries []models.PasswordEntry, masterPassword string) error {
+	vault, err := v.loadVault(masterPassword)
+	if err != nil {
+		return err
+	}
+
+	vault.Entries = entries
+
+	return v.saveVault(vault, masterPassword)
+}
+
 // GetAllEntries loads the vault using the provided master password and returns all password entries.
 // Returns a slice of PasswordEntry and an error if loading the vault fails.
 func (v *VaultManager) GetAllEntries(masterPassword string) ([]models.PasswordEntry, error) {
