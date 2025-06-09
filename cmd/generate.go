@@ -24,7 +24,6 @@ var (
 func init() {
 	generateCmd.Flags().IntVarP(&length, "length", "n", 16, "Length of the password to generate")
 	generateCmd.Flags().StringVarP(&charset, "charset", "c", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()", "Character set to use for password generation")
-	rootCmd.AddCommand(generateCmd)
 }
 
 func runGenerate(_ *cobra.Command, _ []string) error {

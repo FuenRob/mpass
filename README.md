@@ -120,6 +120,13 @@ Select entry number (1-2): 1
 ✅ Password for rob@github.com copied to clipboard!
 ```
 
+#### 🤖 Generate a password
+
+```bash
+$ ./mpass generate -n 16 -c "a-zA-Z0-9!@#$%^&*()"
+Contraseña generada: !@99#-9z#-#)Z%)^
+✅ Password copied to clipboard!
+```
 ## 🏗️ Architecture
 
 ```
