@@ -142,6 +142,27 @@ func (v *VaultManager) UpdateEntries(entries []models.PasswordEntry, masterPassw
 	return v.saveVault(vault, masterPassword)
 }
 
+// DeleteEntry removes a password entry from the vault by matching the username and URL.
+// It loads the vault using the provided master password, filters out the entry to be deleted,
+// and saves the updated vault. Returns an error if loading or saving the vault fails.
+func (v *VaultManager) DeleteEntry(entry *models.PasswordEntry, masterPassword string) error {
+	vault, err := v.loadVault(masterPassword)
+	if err != nil {
+		return err
+	}
+
+	var updatedEntries []models.PasswordEntry
+	for _, e := range vault.Entries {
+		if e.Username != entry.Username || e.URL != entry.URL {
+			updatedEntries = append(updatedEntries, e)
+		}
+	}
+
+	vault.Entries = updatedEntries
+
+	return v.saveVault(vault, masterPassword)
+}
+
 // GetAllEntries loads the vault using the provided master password and returns all password entries.
 // Returns a slice of PasswordEntry and an error if loading the vault fails.
 func (v *VaultManager) GetAllEntries(masterPassword string) ([]models.PasswordEntry, error) {

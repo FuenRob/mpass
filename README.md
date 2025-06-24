@@ -52,18 +52,19 @@ sudo mv mpass /usr/local/bin/
 
 ### Available commands
 
-| Command                              | Description                                               |
-|--------------------------------------|-----------------------------------------------------------|
-| `add`                                | Add a new password                                        |
-| `get -u <username>`                  | Search by username                                        |
-| `get -l <url>`                       | Search by URL                                             |
-| `get -u <username> -l <url>`         | Search by username AND URL                                |
-| `list`                               | List all entries (without showing passwords)              |
-| `generate`                           | Generate a new password                                   |
-| `generate -n <length>`               | Generate a new password with N characters                 |
-| `generate -c <characters>`           | Generate a new password with custom characters            |
+| Command                                | Description                                               |
+|----------------------------------------|-----------------------------------------------------------|
+| `add`                                  | Add a new password                                        |
+| `get -u <username>`                    | Search by username                                        |
+| `get -l <url>`                         | Search by URL                                             |
+| `get -u <username> -l <url>`           | Search by username AND URL                                |
+| `list`                                 | List all entries (without showing passwords)              |
+| `generate`                             | Generate a new password                                   |
+| `generate -n <length>`                 | Generate a new password with N characters                 |
+| `generate -c <characters>`             | Generate a new password with custom characters            |
 | `generate -n <length> -c <characters>` | Generate a new password with length and custom characters |
-| `update`  | Update a password created                                 |
+| `update`                               | Update a password created                                 |
+| `delete`                               | Delete a password created                                  |
 
 ### Usage examples
 
@@ -88,6 +89,21 @@ New Username (current: FuenRob): rob@example.com
 New URL (current: https://github.com/): https://github.com
 New Password (leave blank so as not to change it): ********
 ✅ Password updated for FuenRob@https://github.com/ copied to clipboard!
+```
+
+#### 🗑️ Eliminar una entrada
+
+```bash
+$ ./mpass delete
+Enter master password: ********
+Use the arrow keys to navigate: ↓ ↑ → ←
+Multiple entries found. Please select one:
+> rob@github.com
+  alice@gitlab.com
+
+✅ Selected: FuenRob@https://github.com/
+✅ Entry deleted successfully
+
 ```
 
 #### 🔍 Search by username
@@ -150,7 +166,8 @@ mpass/
 │   ├── get.go             # Get command
 │   ├── generate.go        # Generate password command
 │   ├── list.go            # List command
-│   └── update.go          # Update command
+│   ├── update.go          # Update command
+│   └── delete.go          # Delete command
 ├── internal/              # Internal code
 │   ├── crypto/            # Encryption functions
 │   ├── storage/           # Vault management
